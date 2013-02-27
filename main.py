@@ -15,7 +15,7 @@ import pygame as pyg
 from pygame.locals import *
 import random, os, sys
 
-# constants
+# Constants
 UP = 'up'
 DOWN = 'down'
 LEFT = 'left'
