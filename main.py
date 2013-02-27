@@ -124,22 +124,19 @@ class Ball(pyg.sprite.Sprite):
             
             if (self.x + self.xspeed <= 0):
                 self.bounce('x')
-                # point to p2
+                # point goes to p2
                 global score2
                 score2 += 1
                 
             if (self.x + self.xspeed >= WINDOWWIDTH):
                 self.bounce('x')
-                # point to p1
+                # point goes to p1
                 global score1
                 score1 += 1
                 
             # top/bottom walls
             if (self.y + self.yspeed <= 0) or (self.y + self.yspeed >= WINDOWHEIGHT):
                 self.bounce('y')
-                
-            # check for collide with paddle
-            
                 
             # move
             self.rect = self.rect.move(self.xspeed, self.yspeed)
@@ -153,7 +150,7 @@ class Score(object):
         
         self.hiscore = hiscore
         
-        # make the screen to be blitted
+        # make the screen to be drawn upon
         self.image1 = pyg.Surface((WINDOWWIDTH, 15))
         self.image1.fill(TRANS)
         self.image1.set_colorkey(TRANS)
@@ -203,7 +200,7 @@ class Program(object):
     def handle_input(self):
     # Handle input
         
-        for event in pyg.event.get(): #pyg.even.get() retruns all Event objs since last get() was called
+        for event in pyg.event.get():
             if event.type == QUIT:
                 self.save_score()
                 pyg.quit()
@@ -267,10 +264,7 @@ class Program(object):
                 ball.bounce('x')
             elif bar.pc is '2' and ball.xspeed > 0:
                 ball.bounce('x')
-        
-#### newrect = self.rect.move((0, -self.walk_speed))
-#### self.dirty_rects = self.allsprites.draw(self.screen)
-#### self.allsprites.clear(self.screen, self.bg)
+
     
     def save_score(self):
         if self.hiscore >= score1:
@@ -336,7 +330,7 @@ class Program(object):
     # input, update, draw, tick
         fpsClock = pyg.time.Clock()
 
-        self.windowSurfaceObj = pyg.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT)) #surface obj returned is drawn to screen when pyg.display.update() is called
+        self.windowSurfaceObj = pyg.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
         pyg.display.set_caption('Tiny Pong')
         self.screen = pyg.display.get_surface()
         
